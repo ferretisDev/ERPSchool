@@ -359,6 +359,8 @@ var school = {
                     if (value != null && value != undefined) {
                         $("#editNeighbourhoodFk").val(value);
                     }
+                } else {
+                    alert(data.detail.error);
                 }
             })
             .fail((jqHR, textStatus, errorThrow) => {
