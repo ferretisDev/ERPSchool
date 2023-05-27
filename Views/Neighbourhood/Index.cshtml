@@ -1,0 +1,116 @@
+﻿<h1 class="mb-3">Neighbourhoods</h1>
+<p>
+    <button type="button" class="btn btn-secondary" onclick="neighbourhood.createModal()">Create New</button>
+</p>
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Town</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="neighbourhoods">
+    </tbody>
+</table>
+
+@*CREATE MODAL*@
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Create Neighbourhood</h5>
+            </div>
+            <div class="modal-body">
+                <form id="createForm">
+                    <div class="mb-2">
+                        <label for="createName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="createName" name="name" placeholder="Ingrese un Nombre...">
+                    </div>
+                    <div class="mb-2">
+                        <label for="createStateFk" class="form-label">Estado</label>
+                        <select id="createStateFk" class="form-select" name="stateFk" onchange="neighbourhood.getTownsForCreate();">
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="createTownFk" class="form-label">Municipio</label>
+                        <select id="createTownFk" class="form-select" name="townFk">
+                            @*<option value="">Seleccione un estado...</option>*@
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="neighbourhood.save()">Save</button>
+                <button type="button" class="btn btn-danger" onclick="neighbourhood.closeCreateModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*EDIT MODAL*@
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Edit Neighbourhood</h5>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="mb-2">
+                        <input type="hidden" class="form-control" id="editId" name="id">
+                        <label for="editName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="editName" name="name">
+                    </div>
+                    <div class="mb-2">
+                        <label for="editStateFk" class="form-label">Estado</label>
+                        <select id="editStateFk" class="form-select" name="stateFk" onchange="neighbourhood.getTownsForUpdate();">
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTownFk" class="form-label">Municipio</label>
+                        <select id="editTownFk" class="form-select" name="townFk">
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="neighbourhood.update()">Update</button>
+                <button type="button" class="btn btn-danger" onclick="neighbourhood.closeEditModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*DELETE MODAL*@
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Delete Neighborhood</h5>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="mb-2">
+                        <input type="hidden" class="form-control" id="deleteId">
+                        <p>¿Desea eliminar la colonia?</p>
+                        <input type="text" class="form-control" id="deleteName" name="name" disabled>
+                    </div>
+                    <div class="mb-2">
+                        <p>¿Del municipio?</p>
+                        <input type="text" class="form-control" id="deleteTownFk" name="townFk" disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="neighbourhood.delete()">Delete</button>
+                <button type="button" class="btn btn-secondary" onclick="neighbourhood.closeDeleteModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/neighbourhood/crud.js?@DateTime.Now.Millisecond"></script>
+}

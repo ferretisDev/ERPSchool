@@ -1,0 +1,144 @@
+﻿<h1>Schools</h1>
+<p>
+    <button type="button" class="btn btn-secondary" onclick="school.createModal()">Create New</button>
+</p>
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Street</th>
+            <th>Number</th>
+            <th>Neighbourhood</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="schools"></tbody>
+</table>
+
+@*CREATE MODAL*@
+<div class="modal fade" id="createModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Create School</h5>
+            </div>
+            <div class="modal-body">
+                <form id="createForm">
+                    <div class="row mb-3">
+                        <div class="col-5">
+                            <label for="createName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="createName" name="name" placeholder="">
+                        </div>
+                        <div class="col-5">
+                            <label for="createStreetName" class="form-label">Street Name</label>
+                            <input type="text" class="form-control" id="createStreetName" name="streetName" placeholder="">
+                        </div>
+                        <div class="col-2">
+                            <label for="createNumber" class="form-label">Number</label>
+                            <input type="text" class="form-control" id="createNumber" name="number" placeholder="">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            <label for="createStateFk" class="form-label">State</label>
+                            <select id="createStateFk" class="form-select" name="stateFk" onchange="school.getTownsForCreate();">
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label for="createTownFk" class="form-label">Town</label>
+                            <select id="createTownFk" class="form-select" name="townFk" onchange="school.getNeighborhoodsForCreate();">
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label for="createNeighbourhoodFk" class="form-label">Neighbourhood</label>
+                            <select id="createNeighbourhoodFk" class="form-select" name="neighbourhoodFk">
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="school.save()">Save</button>
+                <button type="button" class="btn btn-danger" onclick="school.closeCreateModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*EDIT MODAL*@
+<div class="modal fade" id="editModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Edit School</h5>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="row mb-3">
+                        <input type="hidden" class="form-control" id="editId">
+                        <div class="col-5">
+                            <label for="editName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="editName" name="name">
+                        </div>
+                        <div class="col-5">
+                            <label for="editStreetName" class="form-label">Street Name</label>
+                            <input type="text" class="form-control" id="editStreetName" name="streetName">
+                        </div>
+                        <div class="col-2">
+                            <label for="editNumber" class="form-label">Number</label>
+                            <input type="text" class="form-control" id="editNumber" name="number">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            <label for="editStateFk" class="form-label">State</label>
+                            <select id="editStateFk" class="form-select" name="stateFk" onchange="school.getTownsForUpdate();">
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label for="editTownFk" class="form-label">Town</label>
+                            <select id="editTownFk" class="form-select" name="townFk" onchange="school.getNeighborhoodsForUpdate();">
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label for="editNeighbourhoodFk" class="form-label">Neighbourhood</label>
+                            <select id="editNeighbourhoodFk" class="form-select" name="neighbourhoodFk">
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="school.update()">Update</button>
+                <button type="button" class="btn btn-danger" onclick="school.closeEditModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*DELETE MODAL*@
+<div class="modal fade" id="deleteModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Delete School</h5>
+            </div>
+            <div class="modal-body">
+                <form id="deleteForm">
+                    <input type="hidden" id="deleteId">
+                    <div class="mb-3">
+                        <p>¿Desea eliminar...?</p>
+                        <input type="text" class="form-control" id="deleteName" disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="school.delete()">Delete</button>
+                <button type="button" class="btn btn-secondary" onclick="school.closeDeleteModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/school/crud.js"></script>
+}

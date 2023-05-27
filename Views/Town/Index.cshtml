@@ -1,0 +1,103 @@
+﻿<h1>Towns</h1>
+<p>
+    <button type="button" class="btn btn-secondary" onclick="town.createModal()">Create New</button>
+</p>
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>State</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="getTowns"></tbody>
+</table>
+
+@*CREATE MODAL*@
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Create Town</h5>
+            </div>
+            <div class="modal-body">
+                <form id="createForm">
+                    <div class="mb-2">
+                        <label for="createName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="createName" name="name" placeholder="Ingrese un Nombre...">
+                    </div>
+                    <div class="mb-2">
+                        <label for="createStateFk" class="form-label">Estado</label>
+                        <select id="createStateFk" class="form-select" name="stateFk">
+                            <option value="">Seleccione un Estado...</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="town.save()">Save</button>
+                <button type="button" class="btn btn-danger" onclick="town.closeCreateModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*EDIT MODAL*@
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Edit Town</h5>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="editId">
+                    <div class="mb-2">
+                        <label for="editName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="editName" name="name">
+                    </div>
+                    <div class="mb-2">
+                        <label for="editStateFk" class="form-label">Estado</label>
+                        <select id="editStateFk" class="form-select" name="stateFk"></select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="town.update()">Update</button>
+                <button type="button" class="btn btn-danger" onclick="town.closeEditModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*DELETE MODAL*@
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Delete Town</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" class="form-control" id="deleteId">
+                    <div class="mb-2">
+                        <p>¿Desea eliminar el municipio?</p>
+                        <input type="text" class="form-control" id="deleteName" disabled>
+                    </div>
+                    <div class="mb-2">
+                        <p>¿Del estado?</p>
+                        <input type="text" class="form-control" id="deleteStateFk" disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="town.delete()">Delete</button>
+                <button type="button" class="btn btn-secondary" onclick="town.closeDeleteModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/town/crud.js?@DateTime.Now.Millisecond"></script>
+}

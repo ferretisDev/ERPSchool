@@ -1,0 +1,84 @@
+﻿@*INDEX PAGE*@
+<h1>Sex</h1>
+<p>
+    <button type="button" class="btn btn-secondary" onclick="sex.createModal()">Create New</button>
+</p>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="getSex"></tbody>
+</table>
+
+@*CREATE MODAL*@
+<form id="createForm">
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title text-light">Create Sex</h5>
+                </div>
+                <div class="modal-body">
+                    <label for="createName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="createName" name="name" placeholder="Insert a Name...">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="sex.save()">Save</button>
+                    <button type="button" class="btn btn-danger" onclick="sex.closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@* EDIT MODAL *@
+<form id="editForm">
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title text-light">Edit Sex</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="editId">
+                    <label for="editName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="editName" name="name">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="button" onclick="sex.update()">Update</button>
+                    <button type="button" class="btn btn-danger" onclick="sex.closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@* DELETE MODAL *@
+<form>
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title text-light">Delete State</h5>
+                </div>
+                <div class="modal-body">
+                    <p>¿Desea eliminar el siguiente elemento?</p>
+                    <input type="hidden" id="deleteId">
+                    <input type="text" class="form-control" id="deleteName" name="deleteName" disabled>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="button" onclick="sex.delete()">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/js/sex/crud.js?@DateTime.Now.Millisecond"></script>
+}
