@@ -1,0 +1,6 @@
+#Omite carpeta y contenido .vs
+.vs/
+
+#Incluye todos los archivos .txt
+*.txt
+*.pdf
