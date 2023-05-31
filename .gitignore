@@ -1,6 +1,7 @@
 #Omite carpeta y contenido .vs
 .vs/
 bin/
+obj/
 
 #Incluye todos los archivos .txt
 *.txt
