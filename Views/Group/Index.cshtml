@@ -44,12 +44,46 @@
         </div>
     </div>
 </div>
+
+@*EDIT MODAL*@
+<div class="modal fade" id="editModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Edit Group</h5>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="editId">
+                    <div class="col mb-3">
+                        <label for="editName" class="form-label">Group Name</label>
+                        <input type="text" class="form-control" id="editName" name="name">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="editMaxStudents" class="form-label">Max Student</label>
+                        <input type="text" class="form-control" id="editMaxStudents" name="maxStudents">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="editSchoolFk" class="form-label">School</label>
+                        <select id="editSchoolFk" class="form-select" name="schoolFk"></select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="group.closeEditModal()">Cancel</button>
+                <button type="button" class="btn btn-success" onclick="group.update()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <script src="~/js/group/crud.js?@DateTime.Now.Millisecond"></script>
     <script>
         $(document).ready(function () {
             group.getSchools();
             group.getGroups();
+            group.getSchoolsForUpdate();
         });
     </script>
 }
