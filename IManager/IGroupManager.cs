@@ -6,6 +6,8 @@ namespace ERPSchool.IManager
 {
     public interface IGroupManager: IBaseManager<GroupViewModel, Group>
     {
-        public List<GroupDetailViewModel> GetAllDetails();
+        List<GroupDetailViewModel> GetAllDetails();
+
+        GroupDetailViewModel GetDetailById(int id);
     }
 }

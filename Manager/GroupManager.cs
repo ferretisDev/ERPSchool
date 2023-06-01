@@ -69,5 +69,19 @@ namespace ERPSchool.Manager
                 SchoolName = p.SchoolFkNavigation?.Name
             }).ToList();
         }
+
+        public GroupDetailViewModel GetDetailById(int id)
+        {
+            var entity = _groupRepository.GetDetailById(id);
+
+            return new GroupDetailViewModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                MaxStudents = entity.MaxStudents,
+                SchoolFk = entity.SchoolFk,
+                SchoolName = entity.SchoolFkNavigation?.Name,
+            };
+        }
     }
 }

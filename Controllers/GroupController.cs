@@ -33,7 +33,6 @@ namespace ERPSchool.Controllers
         public override IActionResult Delete(int id) => base.Delete(id);
 
         [HttpGet]
-
         public IActionResult GetAllDetails()
         {
             var result = new JsonMessageResult();
@@ -42,6 +41,25 @@ namespace ERPSchool.Controllers
             {
                 result.Success = 1;
                 result.Detail = new { Entities = _manager.GetAllDetails() };
+            }
+            catch (Exception ex)
+            {
+                result.Success = 0;
+                result.Detail = new { Error = ex.Message };
+            }
+
+            return Json(result);
+        }
+
+        [HttpGet]
+        public IActionResult GetDetailById(int id)
+        {
+            var result = new JsonMessageResult();
+
+            try
+            {
+                result.Success = 1;
+                result.Detail = new { Entities = _manager.GetDetailById(id) };
             }
             catch (Exception ex)
             {

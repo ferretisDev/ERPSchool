@@ -14,5 +14,12 @@ namespace ERPSchool.Repository
                 .Include(g => g.SchoolFkNavigation)
                 .ToList();
         }
+
+        public Group GetDetailById(int id)
+        {
+            return _context.Groups
+                .Include(s => s.SchoolFkNavigation)
+                .Where(g => g.Id == id).FirstOrDefault();
+        }
     }
 }
