@@ -1,4 +1,5 @@
-﻿using ERPSchool.IManager;
+﻿using ERPSchool.DetailViewModels;
+using ERPSchool.IManager;
 using ERPSchool.IRepository;
 using ERPSchool.Models;
 using ERPSchool.ViewModels;
@@ -55,6 +56,22 @@ namespace ERPSchool.Manager
                 BirthDate = p.BirthDate,
                 SexFk = p.SexFk,
                 GroupFk= p.GroupFk
+            }).ToList();
+        }
+
+        public List<StudentDetailViewModel> GetAllDetails()
+        {
+            var entities = _studentRepository.GetAllDetails();
+
+            return entities.Select(s=> new StudentDetailViewModel()
+            {
+                Id=s.Id,
+                Name=s.Name,
+                BirthDate=s.BirthDate,
+                SexFk=s.SexFk,
+                SexName=s.SexFkNavigation?.Name,
+                GroupFk=s.GroupFk,
+                GroupName=s.GroupFkNavigation?.Name
             }).ToList();
         }
     }
