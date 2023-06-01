@@ -20,6 +20,7 @@
         <div class="modal-content">
             <div class="modal-header bg-dark">
                 <h5 class="modal-title text-light">Create Group</h5>
+                <i class="fa-solid fa-xmark fa-lg" style="color: #FFF; cursor:pointer;" onclick="group.closeCreateModal()"></i>
             </div>
             <div class="modal-body">
                 <form id="createForm">
@@ -38,7 +39,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" onclick="group.closeCreateModal()">Cancel</button>
+                <button type="button" class="btn btn-secondary" onclick="group.closeCreateModal()">Cancel</button>
                 <button type="button" class="btn btn-success" onclick="group.save()">Save</button>
             </div>
         </div>
@@ -51,6 +52,7 @@
         <div class="modal-content">
             <div class="modal-header bg-dark">
                 <h5 class="modal-title text-light">Edit Group</h5>
+                <i class="fa-solid fa-xmark fa-lg" style="color: #FFF; cursor:pointer;" onclick="group.closeEditModal()"></i>
             </div>
             <div class="modal-body">
                 <form id="editForm">
@@ -70,8 +72,35 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" onclick="group.closeEditModal()">Cancel</button>
+                <button type="button" class="btn btn-secondary" onclick="group.closeEditModal()">Cancel</button>
                 <button type="button" class="btn btn-success" onclick="group.update()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*DELETE MODAL*@
+<div class="modal fade" id="deleteModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-light">Delete Group</h5>
+                <i class="fa-solid fa-xmark fa-lg" style="color: #FFF; cursor:pointer;" onclick="group.closeDeleteModal()"></i>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="deleteId">
+                <div class="col mb-3">
+                    <label for="deleteName" class="form-label">¿Desea eliminar el grupo...?</label>
+                    <input type="text" class="form-control" id="deleteName" disabled>
+                </div>
+                <div class="col mb-3">
+                    <label for="deleteSchoolFk" class="form-label">¿De la escuela...?</label>
+                    <input type="text" class="form-control" id="deleteSchoolFk" disabled>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="group.delete()">Delete</button>
+                <button type="button" class="btn btn-secondary" onclick="group.closeDeleteModal()">Cancel</button>
             </div>
         </div>
     </div>

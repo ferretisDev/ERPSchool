@@ -161,5 +161,52 @@
             .fail((jqHR, textStatus, errorThrow) => {
                 alert(errorThrow);
             })
+    },
+    deleteModal: (id) => {
+        $.ajax({
+            method: "GET",
+            url: `../Group/GetDetailById?id=${id}`,
+            type: "JSON",
+            data: {}
+        })
+            .done((data) => {
+                if (data.success == 1) {
+                    $("#deleteId").val(data.detail.entity.id);
+                    $("#deleteName").val(data.detail.entity.name);
+                    $("#deleteSchoolFk").val(data.detail.entity.schoolName);
+                    $("#deleteModal").modal("show");
+                } else {
+                    alert(data.detail.error);
+                }
+            })
+            .fail((jqHR, textStatus, errorThrow) => {
+                alert(errorThrow);
+            })
+    },
+    closeDeleteModal: () => {
+        $("#deleteModal").modal("hide");
+    },
+    delete: () => {
+        $.ajax({
+            method: "DELETE",
+            url: "../Group/Delete/",
+            type: "JSON",
+            data: {
+                id: $("#deleteId").val()
+            }
+        })
+            .done((data) => {
+                console.log(data);
+                if (data.success == 1) {
+                    alert(data.detail.message);
+                    $("#deleteModal").modal("hide");
+                    group.getGroups();
+                } else {
+                    alert(data.detail.error);
+                }
+            })
+            .fail((jqHR, textStatus, errorThrow) => {
+                alert(errorThrow);
+            })
     }
 }
