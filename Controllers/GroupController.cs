@@ -59,7 +59,7 @@ namespace ERPSchool.Controllers
             try
             {
                 result.Success = 1;
-                result.Detail = new { Entities = _manager.GetDetailById(id) };
+                result.Detail = new { Entity = _manager.GetDetailById(id) };
             }
             catch (Exception ex)
             {
