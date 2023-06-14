@@ -69,5 +69,24 @@ namespace ERPSchool.Controllers
 
             return Json(result);
         }
+
+        [HttpGet]
+        public IActionResult GetBySchoolId(int schoolId)
+        {
+            var result = new JsonMessageResult();
+
+            try
+            {
+                result.Success = 1;
+                result.Detail = new { Entities = _manager.GetBySchoolId(schoolId) };
+            }
+            catch (Exception ex)
+            {
+                result.Success = 0;
+                result.Detail = new { Error = ex.Message };
+            }
+
+            return Json(result);
+        }
     }
 }

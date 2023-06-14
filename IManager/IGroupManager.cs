@@ -9,5 +9,7 @@ namespace ERPSchool.IManager
         List<GroupDetailViewModel> GetAllDetails();
 
         GroupDetailViewModel GetDetailById(int id);
+
+        List<GroupViewModel> GetBySchoolId(int schoolId);
     }
 }

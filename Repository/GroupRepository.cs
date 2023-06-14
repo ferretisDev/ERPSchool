@@ -15,6 +15,14 @@ namespace ERPSchool.Repository
                 .ToList();
         }
 
+        public List<Group> GetBySchoolId(int schoolId)
+        {
+            return _context.Groups
+                .Where(s=> s.SchoolFk ==  schoolId)
+                .OrderBy(s=> s.Name)
+                .ToList();
+        }
+
         public Group GetDetailById(int id)
         {
             return _context.Groups

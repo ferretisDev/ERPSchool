@@ -7,5 +7,7 @@ namespace ERPSchool.IRepository
         List<Group> GetAllDetails();
 
         Group GetDetailById(int id);
+
+        List<Group> GetBySchoolId(int schoolId);
     }
 }

@@ -7,7 +7,7 @@
         <tr>
             <th>Name</th>
             <th>BirthDate</th>
-            <th>Sex</th>
+            <th>Gender</th>
             <th>Group</th>
             <th></th>
         </tr>
@@ -15,11 +15,61 @@
     <tbody id="students"></tbody>
 </table>
 
+@*CREATE MODAL*@
+<form id="createForm">
+    <div class="modal fade" id="createModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title text-light">Create Student</h5>
+                    <i class="fa-solid fa-xmark fa-lg" style="color: #FFF; cursor:pointer;" onclick="student.closeCreateModal()"></i>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label for="createName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="createName" name="name" placeholder="Insert Name...">
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <label for="createBirthDate" class="form-label">BirthDate</label>
+                            <input type="date" min="1923-01-01" class="form-control" id="createBirthDate" name="birthDate">
+                        </div>
+                        <div class="col-6">
+                            <label for="createSex" class="form-label">Gender</label>
+                            <select id="createSex" class="form-select" name="sexFk"></select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-8">
+                            <label for="createSchoolFk" class="form-label">School</label>
+                            <select id="createSchoolFk" class="form-select" name="schoolFk" onchange="student.getGroupBySchoolId()" ></select>
+                        </div>
+                        <div class="col-4">
+                            <label for="createGroupFk" class="form-label">Group</label>
+                            <select id="createGroupFk" class="form-select" name="groupFk"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="student.closeCreateModal()">Cancel</button>
+                    <button type="button" class="btn btn-secondary" onclick="student.save()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 @section Scripts {
     <script src="~/js/student/crud.js?@DateTime.Now.Millisecond"></script>
     <script>
         $(document).ready(function () {
             student.getStudents();
+            student.maxBirthDate();
+            student.getSex();
+            student.getSchool();
+            student.valForm("#createForm");
         });
     </script>
 }
